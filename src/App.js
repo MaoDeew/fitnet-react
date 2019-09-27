@@ -3,6 +3,7 @@ import Home from './Home/Home';
 import Profile from './Profile/Profile';
 import Routines from './Routines/Routines';
 import Nutritional from './Nutritional/Nutritional'
+import News_Card from './News_Card/News_Card';
 import {BrowserRouter, Route} from 'react-router-dom';
 import './App.css';
 
