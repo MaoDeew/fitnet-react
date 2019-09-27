@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import NavBar from '../NavBar/NavBar';
 import Informative from '../Informative/Informative';
 import Grid from '@material-ui/core/Grid';
 import './Home.css';
@@ -18,11 +19,14 @@ class Home extends Component {
 
   render(){
     return (
+      <div>
+          <NavBar />
       <div className="alignment">
       <h1>Inicio</h1>
       <Grid container direction="row" justify="center" alignItems="center" spacing={2}>
         {this.state.informatives.map(informative => <Informative title={informative.title } src={informative.src} description={informative.description} />)}
       </Grid>
+      </div>
       </div>
   );
   }
