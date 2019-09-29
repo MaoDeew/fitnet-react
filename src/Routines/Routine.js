@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
     root: {
-      width: '50%',
+      width: '50%'
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
@@ -38,8 +38,7 @@ const useStyles = makeStyles(theme => ({
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
-              Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-              maximus est, id dignissim quam.
+              {props.description.replace('<p>','').replace('</p>','')}
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
