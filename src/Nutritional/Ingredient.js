@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import classesCss from './Ingredient.css'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -32,8 +33,8 @@ var Ingredient = (props) =>{
         <Typography>
             <i style={{paddingRight: 6}} className="fas fa-hamburger"> </i><strong>Fats:</strong> {props.fats} g
         </Typography>
-        <Button variant="contained" color="secondary" className={classes.button}>
-        Add
+        <Button variant="contained" color="secondary" className={classesCss.button}>
+        Add to the count
         </Button>
       </Paper>
     </div>

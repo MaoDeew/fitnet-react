@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classes from './Nutritional.css';
 import NavBar from '../NavBar/NavBar';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -41,15 +42,15 @@ class Nutritional extends Component {
         return (
             <div>
                 <NavBar />
-                <h1 style={{ textAlign: 'center' }}>Pick one of the ingredients</h1>
+                <h1 className={classes.mainTitle}>Pick one of the ingredients</h1>
 
                 <Grid style={{ flexGrow: 1 }} container spacing={3}>
-                    <Grid style={{ display: 'inline-block' }} item sm={7}>
+                    <Grid className={classes.gridBlock} item sm={7}>
 
                        {this.state.loading ? this.renderLoading() : this.renderIngredients()}
 
                     </Grid>
-                    <Grid style={{ display: 'inline-block' }} item sm={5}>
+                    <Grid className={classes.gridBlock} item sm={5}>
                         <h2>Count of calories</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -67,14 +68,14 @@ class Nutritional extends Component {
     renderLoading() {
         return (
             <div>
-                <h1 style={{ display: 'inline-block', paddingRight: 24 }}>Loading Ingredients</h1> <CircularProgress />
+                <h1 className={classes.title}>Loading Ingredients</h1> <CircularProgress />
             </div>
         );
     }
 
     renderPagination(){
         return(
-            <div style={{ display: 'inline-block'}}>
+            <div className={classes.pagination}>
             
            <Fab size='small' onClick={this.handleClickPrevious} disabled={this.state.previousPage==null ? true: false} color="primary" aria-label="add" >
                 <SkipPreviousIcon />
@@ -89,7 +90,7 @@ class Nutritional extends Component {
     renderIngredients(){
         return(
             <div>
-            <h1 style={{ display: 'inline-block', paddingRight: 24 }}>Ingredients</h1>
+            <h1 className={classes.title}>Ingredients</h1>
             {this.renderPagination()}
         <div>
             {this.state.ingredients.map(ingredient => <Ingredient 
