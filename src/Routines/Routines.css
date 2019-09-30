@@ -1,0 +1,8 @@
+.title{
+    display: inline-block;
+    padding-right: 24px; 
+}
+
+.pagination{
+    display: inline-block;
+}

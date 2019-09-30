@@ -3,6 +3,8 @@ import axios from './axiosInstance'
 import NavBar from '../NavBar/NavBar';
 import Routine from '../Routines/Routine'
 
+import classes from './Routines.css'
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fab from '@material-ui/core/Fab';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
@@ -50,7 +52,7 @@ class Routines extends Component {
     renderLoading() {
         return (
             <div>
-                <h1 style={{ display: 'inline-block', paddingRight: 24 }}>Loading Routines</h1> <CircularProgress />
+                <h1 className={classes.title}>Loading Routines</h1> <CircularProgress />
             </div>
         );
     }
@@ -58,7 +60,7 @@ class Routines extends Component {
     renderRoutines() {
         return (
             <div>
-                <h1 style={{ display: 'inline-block', paddingRight: 24 }}>List of Routines</h1>
+                <h1 className={classes.title}>List of Routines</h1>
                {this.renderPagination()}
 
                 {this.state.routines.map(routine => <Routine key={routine.id} title={routine.name} description={routine.description} />)}
@@ -70,7 +72,7 @@ class Routines extends Component {
 
     renderPagination(){
         return(
-            <div style={{ display: 'inline-block'}}>
+            <div className={classes.pagination}>
             
            <Fab size='small' onClick={this.handleClickPrevious} disabled={this.state.previousPage==null ? true: false} color="primary" aria-label="add" >
                 <SkipPreviousIcon />
