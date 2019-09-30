@@ -72,10 +72,10 @@ class Routines extends Component {
         return(
             <div style={{ display: 'inline-block'}}>
             
-           <Fab onClick={this.handleClickPrevious} disabled={this.state.previousPage==null ? true: false} color="primary" aria-label="add" >
+           <Fab size='small' onClick={this.handleClickPrevious} disabled={this.state.previousPage==null ? true: false} color="primary" aria-label="add" >
                 <SkipPreviousIcon />
             </Fab>
-            <Fab onClick={this.handleClickNext} disabled={this.state.nextPage==null ? true: false} color="primary" aria-label="add">
+            <Fab size='small' onClick={this.handleClickNext} disabled={this.state.nextPage==null ? true: false} color="primary" aria-label="add">
                 <SkipNextIcon />
             </Fab>
         </div>
