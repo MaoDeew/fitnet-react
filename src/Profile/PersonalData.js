@@ -29,7 +29,7 @@ export default function PersonalData(props) {
     <form className={classes.container} noValidate autoComplete="off">
       
       <TextField
-        id="standard-read-only-input"
+        id="outlined-read-only-input"
         label="Name"
         defaultValue={props.name}
         className={classes.textField}
@@ -37,10 +37,11 @@ export default function PersonalData(props) {
         InputProps={{
           readOnly: true,
         }}
+        variant='outlined'
       />
 
       <TextField
-        id="standard-read-only-input"
+        id="outlined-read-only-input"
         label="Surname"
         defaultValue={props.surname}
         className={classes.textField}
@@ -48,10 +49,11 @@ export default function PersonalData(props) {
         InputProps={{
           readOnly: true,
         }}
+        variant='outlined'
       />
 
       <TextField
-        id="standard-read-only-input"
+        id="outlined-read-only-input"
         label="E-mail"
         defaultValue={props.email}
         className={classes.textField}
@@ -59,10 +61,11 @@ export default function PersonalData(props) {
         InputProps={{
           readOnly: true,
         }}
+        variant='outlined'
       />
 
     <TextField
-        id="standard-read-only-input"
+        id="outlined-read-only-input"
         label="Height (m)"
         defaultValue={props.height}
         className={classes.textField}
@@ -70,9 +73,10 @@ export default function PersonalData(props) {
         InputProps={{
           readOnly: true,
         }}
+        variant='outlined'
       />
     <TextField
-        id="standard-read-only-input"
+        id="outlined-read-only-input"
         label="Weight (kg)"
         defaultValue={props.weight}
         className={classes.textField}
@@ -80,6 +84,7 @@ export default function PersonalData(props) {
         InputProps={{
           readOnly: true,
         }}
+        variant='outlined'
       />
 
     </form>
