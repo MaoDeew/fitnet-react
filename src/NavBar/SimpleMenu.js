@@ -3,7 +3,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import classes from './SimpleMenu.css'
 
 export default function SimpleMenu() {
@@ -20,10 +20,10 @@ export default function SimpleMenu() {
   return (
     <div>
 
-        <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
-          </IconButton>      
-   
+      <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleClick}>
+        <MenuIcon aria-controls="simple-menu" aria-haspopup="true" />
+      </IconButton>
+
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
@@ -31,13 +31,13 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-       
-        <MenuItem onClick={handleClose}><Link className={classes.link} to='/'>Inicio</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link className={classes.link} to='/profile'>Perfil</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link className={classes.link} to='/routines'>Generador de Rutinas</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link className={classes.link} to='/nutritional'>Información Nutricional</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link className={classes.link} to='/'>Cerrar Sesión</Link></MenuItem>
-         
+
+        <Link className={classes.link} to='/'><MenuItem onClick={handleClose}>Inicio</MenuItem></Link>
+        <Link className={classes.link} to='/profile'><MenuItem onClick={handleClose}>Perfil</MenuItem></Link>
+        <Link className={classes.link} to='/routines'><MenuItem onClick={handleClose}>Generador de Rutinas</MenuItem></Link>
+        <Link className={classes.link} to='/nutritional'><MenuItem onClick={handleClose}>Información Nutricional</MenuItem></Link>
+
+
       </Menu>
     </div>
   );

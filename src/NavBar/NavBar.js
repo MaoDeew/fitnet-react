@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import SimpleMenu from './SimpleMenu';
+import SimpleMenuAccount from './SimpleMenuAccount';
 
 
 const useStyles = makeStyles(theme => ({
@@ -18,11 +18,14 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
+  avatar: {
+    margin: 10,
+  },
 }));
 
 
 
-export default function NavBar(){
+export default function NavBar() {
 
   const classes = useStyles();
 
@@ -30,11 +33,11 @@ export default function NavBar(){
     <div className={classes.root}>
       <AppBar style={{ background: '#295c82' }} position="static">
         <Toolbar>
-            <SimpleMenu className={classes.menuButton}/>
+          <SimpleMenu className={classes.menuButton} />
           <Typography variant="h6" className={classes.title}>
             FitNet
           </Typography>
-          <Button color="inherit">Login</Button>
+          <SimpleMenuAccount className={classes.menuButton} />
         </Toolbar>
       </AppBar>
     </div>
