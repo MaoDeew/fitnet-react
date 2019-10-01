@@ -22,7 +22,7 @@ class Home extends Component {
       <div>
           <NavBar />
       <div className="alignment">
-      <h1>Inicio</h1>
+      <h1 style={{textAlign: 'center'}}>Home</h1>
       <Grid container direction="row" justify="center" alignItems="center" spacing={2}>
         {this.state.informatives.map(informative => <Informative title={informative.title } src={informative.src} description={informative.description} />)}
       </Grid>
