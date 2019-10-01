@@ -13,6 +13,11 @@ const useStyles = makeStyles(theme => ({
   }));
 
 var Ingredient = (props) =>{
+
+  const handleClick = () => {
+    alert(props.calories)
+  };
+
     const classes = useStyles();
 
     return(
@@ -33,7 +38,7 @@ var Ingredient = (props) =>{
         <Typography>
             <i style={{paddingRight: 6}} className="fas fa-hamburger"> </i><strong>Fats:</strong> {props.fats} g
         </Typography>
-        <Button variant="contained" color="secondary" className={classesCss.button}>
+        <Button onClick={handleClick} variant="contained" color="secondary" className={classesCss.button}>
         Add to the count
         </Button>
       </Paper>
