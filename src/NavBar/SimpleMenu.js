@@ -4,6 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import {Link} from 'react-router-dom'
+import classes from './SimpleMenu.css'
 
 export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -31,11 +32,11 @@ export default function SimpleMenu() {
         onClose={handleClose}
       >
        
-        <MenuItem onClick={handleClose}><Link to='/'>Inicio</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link to='/profile'>Perfil</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link to='/routines'>Generador de Rutinas</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link to='/nutritional'>Información Nutricional</Link></MenuItem>
-        <MenuItem onClick={handleClose}>Cerrar Sesión</MenuItem>
+        <MenuItem onClick={handleClose}><Link className={classes.link} to='/'>Inicio</Link></MenuItem>
+        <MenuItem onClick={handleClose}><Link className={classes.link} to='/profile'>Perfil</Link></MenuItem>
+        <MenuItem onClick={handleClose}><Link className={classes.link} to='/routines'>Generador de Rutinas</Link></MenuItem>
+        <MenuItem onClick={handleClose}><Link className={classes.link} to='/nutritional'>Información Nutricional</Link></MenuItem>
+        <MenuItem onClick={handleClose}><Link className={classes.link} to='/'>Cerrar Sesión</Link></MenuItem>
          
       </Menu>
     </div>
