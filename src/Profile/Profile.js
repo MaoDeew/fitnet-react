@@ -28,7 +28,7 @@ class Profile extends Component {
 
                             <Grid className={classes.gridAvatar} item xs={5}>
                                 <Paper>
-                                    <img className={classes.avatar} src={this.state.avatar} />
+                                    <img alt='profilePhoto' className={classes.avatar} src={this.state.avatar} />
                                     <input
                                         accept="image/*"
                                         className={classes.input}
