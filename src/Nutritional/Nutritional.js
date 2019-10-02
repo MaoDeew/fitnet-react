@@ -17,7 +17,8 @@ class Nutritional extends Component {
         ingredients: [],
         loading: false,
         nextPage: null,
-        previousPage: null
+        previousPage: null,
+        caloriesCart: []
     }
 
     componentDidMount() {
@@ -98,12 +99,28 @@ class Nutritional extends Component {
             calories={ingredient.energy} 
             protein={ingredient.protein} 
             carbohydrates={ingredient.carbohydrates} 
-            fats={ingredient.fat}/>)}
+            fats={ingredient.fat}
+            handleCalorieSelection={this.handleCalorieSelection}/>)}
             </div>
         </div>
         );
       
     }
+
+    handleCalorieSelection = calorie =>{
+         var updatedCaloriesCart = [...this.state.caloriesCart];
+         updatedCaloriesCart.push(calorie);
+         
+         this.setState({
+             caloriesCart : updatedCaloriesCart
+         }, ()=>{
+             /*
+             Callback to execute some alert or announce to the user that one calorie from the ingredient was selected.
+             */ 
+             //alert(this.state.caloriesCart);
+         });
+    }
+
 
     handleClickNext = () => {
         axios.get(this.state.nextPage)

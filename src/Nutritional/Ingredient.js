@@ -15,7 +15,10 @@ const useStyles = makeStyles(theme => ({
 var Ingredient = (props) =>{
 
   const handleClick = () => {
-    alert(props.calories)
+    
+    props.handleCalorieSelection(props.calories)
+    
+    
   };
 
     const classes = useStyles();
