@@ -9,9 +9,19 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './store/reducers/rootReducer';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+import {reduxFirestore,getFirestore} from 'redux-firestore';
+import {reactReduxFirebase ,getFirebase} from 'react-redux-firebase';
+import fbConfig from './config/fbConfig'
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(
+        rootReducer,
+        compose(
+            applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+            reduxFirestore(fbConfig),
+            reactReduxFirebase(fbConfig)
+        )
+    );
 
 ReactDOM.render(
     <Provider store = {store}>
