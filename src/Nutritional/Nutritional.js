@@ -42,7 +42,9 @@ class Nutritional extends Component {
     render() {
         return (
             <div>
-                <NavBar />
+               {
+                   //<NavBar />
+               } 
                 <h1 className={classes.mainTitle}>Pick one of the ingredients</h1>
 
                 <Grid style={{ flexGrow: 1 }} container spacing={3}>

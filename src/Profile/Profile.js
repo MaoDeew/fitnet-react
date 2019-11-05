@@ -20,7 +20,9 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <NavBar />
+               {
+                   //<NavBar />
+               } 
                 <div>
                     <h1>Your FitNet Profile</h1>
                     <div>

@@ -20,7 +20,9 @@ class Home extends Component {
   render(){
     return (
       <div>
-          <NavBar />
+          {
+                   //<NavBar />
+               } 
       <div className="alignment">
       <h1 style={{textAlign: 'center'}}>Home</h1>
       <Grid container direction="row" justify="center" alignItems="center" spacing={2}>
