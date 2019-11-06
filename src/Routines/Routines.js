@@ -41,9 +41,6 @@ class Routines extends Component {
         
         return (
             <div>
-                {
-                   //<NavBar />
-               } 
                 <div>
                     {this.state.loading ? this.renderLoading() : this.renderRoutines()}
                 </div>
