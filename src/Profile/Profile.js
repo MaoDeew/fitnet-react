@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NavBar from '../NavBar/NavBar';
 import classes from '../Profile/Profile.css';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';

@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import SimpleMenu from './SimpleMenu';
 import SimpleMenuAccount from './SimpleMenuAccount';
 
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -25,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function NavBar() {
+const NavBar = () =>{
 
   const classes = useStyles();
 
@@ -43,3 +42,6 @@ export default function NavBar() {
     </div>
   );
 }
+
+
+export default NavBar

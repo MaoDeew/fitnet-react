@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from './axiosInstance'
-import NavBar from '../NavBar/NavBar';
 import Routine from '../Routines/Routine'
 
 import classes from './Routines.css'

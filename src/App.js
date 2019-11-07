@@ -3,9 +3,11 @@ import Home from './Home/Home';
 import Profile from './Profile/Profile';
 import Routines from './Routines/Routines';
 import Nutritional from './Nutritional/Nutritional'
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import NavBar from './NavBar/NavBar';
 import './App.css';
+
+import {connect} from 'react-redux'
 
 
 class App extends Component {
@@ -16,17 +18,34 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <NavBar />
-            <Route path='/' exact component={Home} />
-            <Route path='/profile' exact component={Profile} />
-            <Route path='/routines' exact component={Routines} />
-            <Route path='/nutritional' exact component={Nutritional} />
+          {this.props.isUserLoggedIn ? this.renderRoutes() : <div> <Route path='/' exact component={Home} /> <Redirect to="/" /></div>}
         </BrowserRouter>
       </div>
     );
+  }
+
+  renderRoutes(){
+    return(
+      <div>
+        <Route path='/' exact component={Home} />
+        <Route path='/profile' exact component={Profile} />
+        <Route path='/routines' exact component={Routines} />
+        <Route path='/nutritional' exact component={Nutritional} />
+      </div>
+    )
   }
 
 
 
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    isUserLoggedIn : Boolean(state.firebaseStore.auth.uid)
+  }
+}
+
+
+
+export default connect(mapStateToProps)(App);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classes from './Nutritional.css';
-import NavBar from '../NavBar/NavBar';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
