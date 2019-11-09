@@ -16,7 +16,7 @@ var Ingredient = (props) =>{
 
   const handleClick = () => {
     
-    props.handleCalorieSelection(props.calories)
+    props.handleCalorieSelection(props)
     
     
   };
