@@ -7,11 +7,15 @@ import Fab from '@material-ui/core/Fab';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 
+import Button from '@material-ui/core/Button';
+
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
+
 import axios from './axiosInstance';
-import Ingredient from './Ingredient';
+import Ingredient from './Ingredient'
+import IngredientCart from './IngredientCart';
 
 class Nutritional extends Component {
 
@@ -20,7 +24,7 @@ class Nutritional extends Component {
         loading: false,
         nextPage: null,
         previousPage: null,
-        ingredientsCart: []
+        ingredientsCart: [],
     }
 
     componentDidMount() {
@@ -48,17 +52,20 @@ class Nutritional extends Component {
 
                 <Grid style={{ flexGrow: 1 }} container spacing={3}>
                     
-                    <Grid style={{}} className={classes.gridBlock} item sm={5}>
+                    <Grid className={classes.gridBlock} item sm={5}>
                         <h2>Nutritional Plates</h2>
                         <p>In this part, you are going to find the variety of different plates and its specific nutiritional information.</p>
                         <h2>Count of calories</h2>
                         <p>Standards of calorie intake differ from one country to another. The principal recommendation is to consume 2,700 kilocalories per day and 2,200 kilocalories per day for women. Meanwhile, the minimun consume in adults is 1,800 kilocalories per day. In this part you can select different combination of plates to consume in a day, and the Calorie Bar will tell you if you reach at leats thei minimun kilocaries, and not to overpass the maximun of kilocaries</p>
+                        <Grid container>
                             {this.renderCalorieCount()}
+                            {this.renderCart()}
+                        </Grid>
                     </Grid>
                     <Grid className={classes.gridBlock} item sm={7}>
-
-                       {this.state.loading ? this.renderLoading() : this.renderIngredients()}
-
+                       
+                        {this.state.loading ? this.renderLoading() : this.renderIngredients()}
+                        
                     </Grid>
                 </Grid>
 
@@ -90,10 +97,10 @@ class Nutritional extends Component {
 
     renderIngredients(){
         return(
-            <div>
+        <div style={{}}>
             <h1 className={classes.title}>Ingredients</h1>
             {this.renderPagination()}
-        <div>
+            <div style={{overflowY: 'scroll', height: 500 }}>
             {this.state.ingredients.map(ingredient => <Ingredient 
             key={ingredient.id} name={ingredient.name} 
             calories={ingredient.energy} 
@@ -108,15 +115,16 @@ class Nutritional extends Component {
     }
 
     renderCalorieCount(){
-        var caloriesCount = this.state.ingredientsCart.reduce((partial_sum, a) => partial_sum + a,0); 
-        var caloriesCountString = new String(caloriesCount);
+        var arrayCalories = this.state.ingredientsCart.map(({calories}) => calories)
+        var caloriesCount = arrayCalories.reduce((partial_sum, a) => partial_sum + a,0); 
+        var caloriesCountString = String(caloriesCount);
 
         if (caloriesCount < 9) {
             caloriesCountString = "0"+caloriesCountString;
         }
 
         return(
-            <div style={{width: 200, height: 200}}>
+            <Grid style={{ width: 200, height: 200, display: 'inline-block', padding: 20, alignItems: 'center'}}>
                <CircularProgressbarWithChildren 
                value={caloriesCount} 
                maxValue={2500} 
@@ -129,15 +137,24 @@ class Nutritional extends Component {
                         <p style={{textAlign : 'center'}}>kilocalories</p>
                     </div>
             </CircularProgressbarWithChildren>
-            </div>
+            </Grid>
         )
     }
 
-    renderList
+    renderCart(){
+        return(
+            <Grid style={{display : 'inline-block', padding: 5}}>
+               <Button onClick={this.handleClickDeleteLastIngredient} variant="contained" color="primary">
+                Delete last selected ingredient
+                </Button>
+                <IngredientCart cart={this.state.ingredientsCart} /> 
+            </Grid>
+        )
+    }
 
     handleCalorieSelection = ingredient =>{
          var updatedingredientsCart = [...this.state.ingredientsCart];
-         updatedingredientsCart.push(ingredient.calories);
+         updatedingredientsCart.push(ingredient);
          
          this.setState({
              ingredientsCart : updatedingredientsCart
@@ -174,7 +191,20 @@ class Nutritional extends Component {
                     previousPage: response.data.previous
                 });
             })
-      } 
+      }
+      
+      handleClickDeleteLastIngredient = () =>{
+        var updatedingredientsCart = [...this.state.ingredientsCart];
+        updatedingredientsCart.pop();
+        this.setState({
+            ingredientsCart : updatedingredientsCart
+        }, ()=>{
+            /*
+            Callback to execute some alert or announce to the user
+            */ 
+            console.log(this.state.ingredientsCart);
+        });
+      }
 
 }
 
