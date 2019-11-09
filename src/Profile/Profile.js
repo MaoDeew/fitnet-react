@@ -4,16 +4,25 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import PersonalData from './PersonalData';
+import FormDialog from './FormDialog';
+
+import { connect } from 'react-redux';
 
 class Profile extends Component {
 
     state = {
-        name: 'Andy',
-        surname: 'Newman',
-        email: 'asfsfaf@gmail.com',
-        height: 1.75,
-        weight: 66,
-        avatar: 'https://www.eharmony.com/blog/wp-content/uploads/2010/04/eHarmony-Blog-profile-picture.jpg'
+        name: this.props.name,
+        surname: this.props.surname,
+        email: this.props.email,
+        height: this.props.height,
+        weight: this.props.weight,
+        avatar: this.props.avatar
+    }
+
+    renderAdvice(){
+        return(
+            <p>It seems that the account is new, fill the fields of height and weight to complete the registration to FitNet</p>
+        )
     }
 
     render() {
@@ -27,18 +36,6 @@ class Profile extends Component {
                             <Grid className={classes.gridAvatar} item xs={5}>
                                 <Paper>
                                     <img alt='profilePhoto' className={classes.avatar} src={this.state.avatar} />
-                                    <input
-                                        accept="image/*"
-                                        className={classes.input}
-                                        id="contained-button-file"
-                                        multiple
-                                        type="file"
-                                    />
-                                    <label htmlFor="contained-button-file">
-                                        <Button variant="contained" component="span" className={classes.buttonImage}>
-                                            Upload Profile Image
-                                        </Button>
-                                    </label>
                                 </Paper>
                             </Grid>
 
@@ -53,10 +50,12 @@ class Profile extends Component {
                                 </Paper>
                                 <div style={{paddingTop: 7}}>
                                 <Paper className={classes.paperButtons} >
-                                    <Button variant="contained" color="primary" >
-                                        Edit Personal Information
-                                    </Button>
-                                    <div className={classes.buttonSeparator}></div>
+                                {this.state.height === 0 && this.state.weight === 0 ? this.renderAdvice() : null}
+                               
+                                    <div className={classes.buttonSeparator}>
+                                    <FormDialog message= {this.state.height === 0 && this.state.weight === 0 ? 'edit height and weight' : 'edit personal information'} />
+                                    </div>
+                                    
                                     <Button variant="contained" color="primary" >
                                         Calculate BMI
                                     </Button>
@@ -73,4 +72,15 @@ class Profile extends Component {
 
 }
 
-export default Profile;
+const mapStateToProps = (state) => {
+    return {
+      name : state.firebaseStore.profile.name,
+      surname : state.firebaseStore.profile.surname,
+      email : state.firebaseStore.profile.email,
+      height : state.firebaseStore.profile.height,
+      weight : state.firebaseStore.profile.weight,
+      avatar : state.firebaseStore.auth.photoURL
+    }
+  }
+
+export default connect(mapStateToProps)(Profile);
