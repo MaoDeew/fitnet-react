@@ -2,8 +2,15 @@
     width: 50%;
 }
 
+.resizeImage{
+  display: block;
+}
+
 @media only screen and (max-width: 600px) {
     .root {
       width: 100%;
+    }
+    .resizeImage{
+      display: inline-block;
     }
 }
