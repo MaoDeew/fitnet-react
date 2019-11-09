@@ -5,6 +5,7 @@ import Routines from './Routines/Routines';
 import Nutritional from './Nutritional/Nutritional'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import NavBar from './NavBar/NavBar';
+import News from './News/News1.js';
 import './App.css';
 
 import {connect} from 'react-redux'
@@ -31,6 +32,7 @@ class App extends Component {
         <Route path='/profile' exact component={Profile} />
         <Route path='/routines' exact component={Routines} />
         <Route path='/nutritional' exact component={Nutritional} />
+        <Route path='/news' exact component={News}/>
       </div>
     )
   }
