@@ -19,7 +19,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <NavBar />
-          {this.props.isUserLoggedIn ? this.renderRoutes() : <div> <Route path='/' exact component={Home} /> <Redirect to="/" /></div>}
+          {this.props.isUserLoggedIn ? this.renderRoutes() : <div> <Route path='/' exact component={News} /> <Redirect to="/" /></div>}
         </BrowserRouter>
       </div>
     );
