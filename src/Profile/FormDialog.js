@@ -31,7 +31,7 @@ class FormDialog extends Component {
 
 
   render(){
-    return (
+    return ( 
         <div>
             <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
                 {this.props.message}git 
