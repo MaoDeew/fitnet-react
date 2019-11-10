@@ -58,7 +58,13 @@ var News = (props) => {
           </ButtonBase>
         </Grid>
         <Typography variant="body2" color="textSecondary" component="p" justify="left" alignItems="left">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque neque ac augue maximus, ac egestas augue pellentesque. Nullam consequat faucibus orci. Donec ut vulputate ipsum. Ut posuere diam ut odio venenatis dapibus. Ut mattis sapien in enim pharetra sagittis. Fusce vel lectus pretium, auctor ligula ut, efficitur neque. Quisque tincidunt metus nec est molestie, eget interdum felis sodales. Quisque porta nunc tortor. Fusce placerat metus vitae tristique vulputate. Donec tempor facilisis ipsum eget semper. Phasellus vitae mollis nulla, ut volutpat tortor. Pellentesque hendrerit nunc finibus pulvinar aliquam. Vivamus ultricies vehicula orci, quis egestas sapien dignissim nec. Aliquam mollis ante eget tortor placerat interdum. Nunc volutpat arcu bibendum viverra volutpat.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque neque ac augue maximus, 
+        ac egestas augue pellentesque. Nullam consequat faucibus orci. Donec ut vulputate ipsum. Ut posuere diam ut
+         odio venenatis dapibus. Ut mattis sapien in enim pharetra sagittis. Fusce vel lectus pretium, auctor ligula ut,
+          efficitur neque. Quisque tincidunt metus nec est molestie, eget interdum felis sodales. Quisque porta nunc tortor.
+           Fusce placerat metus vitae tristique vulputate. Donec tempor facilisis ipsum eget semper. Phasellus vitae mollis
+            nulla, ut volutpat tortor. Pellentesque hendrerit nunc finibus pulvinar aliquam. Vivamus ultricies vehicula orci,
+             quis egestas sapien dignissim nec. Aliquam mollis ante eget tortor placerat interdum. Nunc volutpat arcu bibendum viverra volutpat.
         </Typography>
         <TextField
             id="standard-basic"
