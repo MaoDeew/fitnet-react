@@ -26,7 +26,7 @@ class FormDialog extends Component {
   };
 
   handleUpdate = () => {
-    this.props.history.push(`/profile`)
+    
   };
 
 
@@ -34,7 +34,7 @@ class FormDialog extends Component {
     return (
         <div>
             <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-                {this.props.message}
+                {this.props.message}git 
             </Button>
           <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
