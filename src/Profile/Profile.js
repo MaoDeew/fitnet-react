@@ -1,15 +1,54 @@
 import React, { Component } from 'react';
 import classes from '../Profile/Profile.css';
+import { makeStyles } from '@material-ui/core/styles'; 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import PersonalData from './PersonalData';
 import FormDialog from './FormDialog';
+import Typography from '@material-ui/core/Typography';
 
 import { connect } from 'react-redux';
+import { Slider } from '@material-ui/core';
+
+const useStyle = makeStyles(theme => ({
+    root: {
+        widht: 250,
+    },
+    margin:{
+        height: theme.spacing(3),
+    },
+}));
+
+function valuetext(value){
+    return `${value}Kg`;
+}
+
+const marks =[
+    {
+        value: 0,
+        label: '0 Kg',
+    },
+    {
+        value: 20,
+        label: '20 Kg',
+    },
+    {
+        value: 30,
+        label: '30 Kg',
+    },
+    {
+        value: 50,
+        label: '50 Kg',
+    },
+    {
+        value: 100,
+        label: '100 Kg',
+    },
+];
 
 class Profile extends Component {
-
+    
     state = {
         name: this.props.name,
         surname: this.props.surname,
@@ -47,6 +86,18 @@ class Profile extends Component {
                                         email={this.state.email}
                                         height={this.state.height}
                                         weight={this.state.weight} />
+                                        <div className={classes.root} >
+                                            <Typography id="track-fat" gutterBottom>
+                                                Fat Track
+                                            </Typography>
+                                            <Slider
+                                                track="inverted"
+                                                aria-labelledby="track-nverted-slider"
+                                                getAriaValueText={valuetext}
+                                                defaultValue={30}
+                                                marks={marks}
+                                            />
+                                        </div>        
                                 </Paper>
                                 <div style={{paddingTop: 7}}>
                                 <Paper className={classes.paperButtons} >
@@ -64,7 +115,6 @@ class Profile extends Component {
                             </Grid>
                         </Grid>
                     </div>
-
                 </div>
             </div>
         );
