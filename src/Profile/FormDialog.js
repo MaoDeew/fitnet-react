@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionCreators from '../store/actions/profileAction';
 
@@ -17,7 +17,8 @@ class FormDialog extends Component {
         open: false,
         height : 0,
         weight: 0,
-        uidUser : this.props.uidUser
+        uidUser : this.props.uidUser,
+        redirect : false
     }
 
    handleClickOpen = () => {
@@ -41,7 +42,9 @@ class FormDialog extends Component {
 
     this.props.updateWeigtAndHeight(updateData, ()=>{
         this.handleClose()
-        window.location.reload()
+        this.setState({
+          redirect : true
+        })
     });
 
   };
@@ -59,16 +62,21 @@ class FormDialog extends Component {
     });
 }
 
+    renderRedirect(){
+      return(
+        <Redirect to='/profile' />
+      )
+    }
+
 
   render(){
-      console.log(this.state)
     return ( 
         <div>
             <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
                 {this.props.message} 
             </Button>
           <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+            <DialogTitle id="form-dialog-title">Edit Weight and Height</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 In the respective fields submit for the new height and weight
@@ -101,6 +109,7 @@ class FormDialog extends Component {
               </Button>
             </DialogActions>
           </Dialog>
+          {this.state.redirect ? this.renderRedirect() : null}
         </div>
       );
   }

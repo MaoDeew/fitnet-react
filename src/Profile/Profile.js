@@ -16,24 +16,20 @@ function valuetext(value){
 
 const marks =[
     {
-        value: 0,
-        label: '0 Kg',
+        value: 18.5,
+        label: '18.5',
     },
     {
-        value: 20,
-        label: '20 Kg',
+        value: 24.9,
+        label: '24.9',
     },
     {
-        value: 30,
-        label: '30 Kg',
+        value: 29.9,
+        label: '29.9',
     },
     {
         value: 50,
-        label: '50 Kg',
-    },
-    {
-        value: 100,
-        label: '100 Kg',
+        label: '50',
     },
 ];
 
@@ -45,8 +41,16 @@ class Profile extends Component {
         email: this.props.email,
         height: this.props.height,
         weight: this.props.weight,
-        avatar: this.props.avatar
+        avatar: this.props.avatar,
+        bmi : 0
     }
+
+    handleClickCalculateBMI = () => {
+        var bmiCalculation = ((this.state.weight)/(this.state.height*this.state.height)).toFixed(2)
+        this.setState({
+            bmi: bmiCalculation
+        })
+      };
 
     renderAdvice(){
         return(
@@ -54,7 +58,44 @@ class Profile extends Component {
         )
     }
 
+    renderBMIResult(){
+
+        if (this.state.bmi===0) {
+            return null;
+        }
+
+        if (this.state.bmi<18.5) {
+            return(
+                <div style={{padding: 20 }}>
+                  Your BMI is {this.state.bmi} and you are underweight                          
+                </div>
+            )
+        }
+        if (this.state.bmi>=18.5 && this.state.bmi<24.9) {
+            return(
+                <div style={{padding: 20 }}>
+                  Your BMI is {this.state.bmi} and you have normal weight                          
+                </div>
+            )
+        }
+        if (this.state.bmi>=24.9 && this.state.bmi<29.9) {
+            return(
+                <div style={{padding: 20 }}>
+                  Your BMI is {this.state.bmi} and you are overweight                          
+                </div>
+            )
+        }
+        if (this.state.bmi>=29.9) {
+            return(
+                <div style={{padding: 20 }}>
+                  Your BMI is {this.state.bmi} and you have obesity                          
+                </div>
+            )
+        }
+    }
+
     render() {
+        console.log(this.state)
         return (
             <div>
                 <div>
@@ -80,7 +121,7 @@ class Profile extends Component {
                                     
                                     
                                     <div className={classes.slider} >
-                                            <Typography style={{paddingBottom: 40}} id="track-fat" gutterBottom>
+                                            <Typography style={{paddingBottom: 40}} id="track-bmi" gutterBottom>
                                                 BMI Results
                                             </Typography>
                                             <Slider 
@@ -89,11 +130,13 @@ class Profile extends Component {
                                                 aria-labelledby="track-nverted-slider"
                                                 getAriaValueText={valuetext}
                                                 defaultValue={0}
+                                                value={this.state.bmi}
                                                 marks={marks}
+                                                max={50}
                                                 valueLabelDisplay="on"
                                             />
                                         </div>
-                                    
+                                      {this.renderBMIResult()}
                                                
                                 </Paper>
                                 <div style={{paddingTop: 7}}>
@@ -104,7 +147,7 @@ class Profile extends Component {
                                     <FormDialog message= {this.state.height === 0 && this.state.weight === 0 ? 'edit height and weight' : 'edit personal information'} />
                                     </div>
                                     
-                                    <Button variant="contained" color="primary" >
+                                    <Button onClick={this.handleClickCalculateBMI} variant="contained" color="primary" >
                                         Calculate BMI
                                     </Button>
                                 </Paper>
