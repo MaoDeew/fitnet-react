@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classes from '../Profile/Profile.css';
-import { makeStyles } from '@material-ui/core/styles'; 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -10,15 +9,6 @@ import Typography from '@material-ui/core/Typography';
 
 import { connect } from 'react-redux';
 import { Slider } from '@material-ui/core';
-
-const useStyle = makeStyles(theme => ({
-    root: {
-        widht: 250,
-    },
-    margin:{
-        height: theme.spacing(3),
-    },
-}));
 
 function valuetext(value){
     return `${value}Kg`;
@@ -80,24 +70,31 @@ class Profile extends Component {
 
                             <Grid item xs={7}>
                                 <Paper>
-                                    <PersonalData
+                                    
+                                        <PersonalData
                                         name={this.state.name}
                                         surname={this.state.surname}
                                         email={this.state.email}
                                         height={this.state.height}
                                         weight={this.state.weight} />
-                                        <div className={classes.root} >
-                                            <Typography id="track-fat" gutterBottom>
-                                                Fat Track
+                                    
+                                    
+                                    <div className={classes.slider} >
+                                            <Typography style={{paddingBottom: 40}} id="track-fat" gutterBottom>
+                                                BMI Results
                                             </Typography>
-                                            <Slider
+                                            <Slider 
+                                                color='primary'
                                                 track="inverted"
                                                 aria-labelledby="track-nverted-slider"
                                                 getAriaValueText={valuetext}
-                                                defaultValue={30}
+                                                defaultValue={0}
                                                 marks={marks}
+                                                valueLabelDisplay="on"
                                             />
-                                        </div>        
+                                        </div>
+                                    
+                                               
                                 </Paper>
                                 <div style={{paddingTop: 7}}>
                                 <Paper className={classes.paperButtons} >

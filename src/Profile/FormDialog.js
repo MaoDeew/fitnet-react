@@ -7,10 +7,17 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+
+import { connect } from 'react-redux';
+import * as actionCreators from '../store/actions/profileAction';
+
 class FormDialog extends Component {
   
     state = {
-        open: false
+        open: false,
+        height : 0,
+        weight: 0,
+        uidUser : this.props.uidUser
     }
 
    handleClickOpen = () => {
@@ -25,16 +32,40 @@ class FormDialog extends Component {
     })
   };
 
-  handleUpdate = () => {
-    
+  handleSubmitUpdate = () => {
+      var updateData = {
+          height : this.state.height,
+          weight : this.state.weight,
+          uidUser : this.state.uidUser
+      }
+
+    this.props.updateWeigtAndHeight(updateData, ()=>{
+        this.handleClose()
+        window.location.reload()
+    });
+
   };
+
+  updateDataInfo = (event, type) => {
+    var updateDataInfo = {
+        ...this.state
+    }
+
+    updateDataInfo[type] = event.target.value;
+
+    this.setState({
+        height: updateDataInfo.height,
+        weight: updateDataInfo.weight
+    });
+}
 
 
   render(){
+      console.log(this.state)
     return ( 
         <div>
             <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-                {this.props.message}git 
+                {this.props.message} 
             </Button>
           <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
@@ -46,24 +77,26 @@ class FormDialog extends Component {
                 autoFocus
                 margin="dense"
                 id="height"
-                label="Height"
+                label="Height (m)"
                 type="height"
                 fullWidth
+                onChange={(event) => { this.updateDataInfo(event, 'height') }}
               />
               <TextField
                 autoFocus
                 margin="dense"
                 id="weight"
-                label="Weight"
+                label="Weight (kg)"
                 type="weight"
                 fullWidth
+                onChange={(event) => { this.updateDataInfo(event, 'weight') }}
               />
             </DialogContent>
             <DialogActions>
               <Button onClick={this.handleClose} color="primary">
                 Cancel
               </Button>
-              <Button onClick={this.handleUpdate} color="primary">
+              <Button onClick={this.handleSubmitUpdate} color="primary">
                 Update
               </Button>
             </DialogActions>
@@ -74,4 +107,18 @@ class FormDialog extends Component {
   
 }
 
-export default FormDialog;
+const mapDispatchToProps = dispatch => {
+    return {
+        updateWeigtAndHeight: (updateData, onSuccessCallback) => dispatch(
+            actionCreators.updateProfileData(updateData, onSuccessCallback)
+        )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return{
+        uidUser : state.firebaseStore.auth.uid
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormDialog);
