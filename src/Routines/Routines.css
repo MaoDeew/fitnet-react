@@ -6,3 +6,16 @@
 .pagination{
     display: inline-block;
 }
+
+.calendar {
+    display: inline-block;
+    font-size: 36px;
+  }
+
+  @media only screen and (max-width: 600px) {
+   
+.calendar {
+    display: inline-block;
+    font-size: 22px;
+  }
+} 

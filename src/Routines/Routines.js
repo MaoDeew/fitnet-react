@@ -10,6 +10,9 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import Grid from '@material-ui/core/Grid';
 
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+
 import * as alertify from 'alertifyjs';
 
 class Routines extends Component {
@@ -19,7 +22,8 @@ class Routines extends Component {
         loading: false,
         nextPage: null,
         previousPage: null,
-        routinesCart: []
+        routinesCart: [],
+        selectedDays : []
     }
 
     componentDidMount() {
@@ -74,10 +78,11 @@ class Routines extends Component {
                 handleRoutineSelection={this.handleRoutineSelection} />)}
                 </Grid>
                 <Grid style={{display : 'inline-block'}} item sm={5}>
-                aaaaaaaaaaaaaaaaaaaaaaa
+                    
+                    <DayPicker selectedDays={this.state.selectedDays} className={classes.calendar}/>
+                    
                 </Grid>
             </Grid>
-            {this.renderPagination()}
             </div>
         );
     }
@@ -124,15 +129,37 @@ class Routines extends Component {
 
       handleRoutineSelection = routine => {
         var dateRoutineSelection = document.getElementById('date'+routine.id).value;
-        
+        var year = dateRoutineSelection.split("-")[0];
+        var month = dateRoutineSelection.split("-")[1];
+        var day = dateRoutineSelection.split("-")[2];
+        var dateSelected = new Date(year,month-1,day)
+
         var updatedRoutinesCart = [...this.state.routinesCart];
+        var updateSelectedDays = [...this.state.selectedDays];
         console.log(updatedRoutinesCart)
-        updatedRoutinesCart.push({routine, dateRoutineSelection});
+        console.log(updateSelectedDays) 
+
+        
+        function isInArray(array, value) {
+            return !!array.find(item => {return item.getTime() === value.getTime()});
+          }
+
+
+        if (!isInArray(this.state.selectedDays, dateSelected)) {
+            updatedRoutinesCart.push({routine, dateSelected});
+            updateSelectedDays.push(dateSelected)
+
         this.setState({
-            routinesCart: updatedRoutinesCart
+            routinesCart: updatedRoutinesCart,
+            selectedDays : updateSelectedDays
         }, () => {
             alertify.success('Routine selected')
         });
+        }else{
+            alertify.error('The date you selected has already a routine')
+        }
+        
+        
     }
 
 }
