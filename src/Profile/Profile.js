@@ -5,19 +5,52 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import PersonalData from './PersonalData';
 import FormDialog from './FormDialog';
+import Typography from '@material-ui/core/Typography';
 
 import { connect } from 'react-redux';
+import { Slider } from '@material-ui/core';
+
+function valuetext(value){
+    return `${value}Kg`;
+}
+
+const marks =[
+    {
+        value: 18.5,
+        label: '18.5',
+    },
+    {
+        value: 24.9,
+        label: '24.9',
+    },
+    {
+        value: 29.9,
+        label: '29.9',
+    },
+    {
+        value: 50,
+        label: '50',
+    },
+];
 
 class Profile extends Component {
-
+    
     state = {
         name: this.props.name,
         surname: this.props.surname,
         email: this.props.email,
         height: this.props.height,
         weight: this.props.weight,
-        avatar: this.props.avatar
+        avatar: this.props.avatar,
+        bmi : 0
     }
+
+    handleClickCalculateBMI = () => {
+        var bmiCalculation = ((this.state.weight)/(this.state.height*this.state.height)).toFixed(2)
+        this.setState({
+            bmi: bmiCalculation
+        })
+      };
 
     renderAdvice(){
         return(
@@ -25,7 +58,44 @@ class Profile extends Component {
         )
     }
 
+    renderBMIResult(){
+
+        if (this.state.bmi===0) {
+            return null;
+        }
+
+        if (this.state.bmi<18.5) {
+            return(
+                <div style={{padding: 20 }}>
+                  Your BMI is {this.state.bmi} and you are underweight                          
+                </div>
+            )
+        }
+        if (this.state.bmi>=18.5 && this.state.bmi<24.9) {
+            return(
+                <div style={{padding: 20 }}>
+                  Your BMI is {this.state.bmi} and you have normal weight                          
+                </div>
+            )
+        }
+        if (this.state.bmi>=24.9 && this.state.bmi<29.9) {
+            return(
+                <div style={{padding: 20 }}>
+                  Your BMI is {this.state.bmi} and you are overweight                          
+                </div>
+            )
+        }
+        if (this.state.bmi>=29.9) {
+            return(
+                <div style={{padding: 20 }}>
+                  Your BMI is {this.state.bmi} and you have obesity                          
+                </div>
+            )
+        }
+    }
+
     render() {
+        console.log(this.state)
         return (
             <div>
                 <div>
@@ -41,12 +111,33 @@ class Profile extends Component {
 
                             <Grid item xs={7}>
                                 <Paper>
-                                    <PersonalData
+                                    
+                                        <PersonalData
                                         name={this.state.name}
                                         surname={this.state.surname}
                                         email={this.state.email}
                                         height={this.state.height}
                                         weight={this.state.weight} />
+                                    
+                                    
+                                    <div className={classes.slider} >
+                                            <Typography style={{paddingBottom: 40}} id="track-bmi" gutterBottom>
+                                                BMI Results
+                                            </Typography>
+                                            <Slider 
+                                                color='primary'
+                                                track="inverted"
+                                                aria-labelledby="track-nverted-slider"
+                                                getAriaValueText={valuetext}
+                                                defaultValue={0}
+                                                value={this.state.bmi}
+                                                marks={marks}
+                                                max={50}
+                                                valueLabelDisplay="on"
+                                            />
+                                        </div>
+                                      {this.renderBMIResult()}
+                                               
                                 </Paper>
                                 <div style={{paddingTop: 7}}>
                                 <Paper className={classes.paperButtons} >
@@ -56,7 +147,7 @@ class Profile extends Component {
                                     <FormDialog message= {this.state.height === 0 && this.state.weight === 0 ? 'edit height and weight' : 'edit personal information'} />
                                     </div>
                                     
-                                    <Button variant="contained" color="primary" >
+                                    <Button onClick={this.handleClickCalculateBMI} variant="contained" color="primary" >
                                         Calculate BMI
                                     </Button>
                                 </Paper>
@@ -64,7 +155,6 @@ class Profile extends Component {
                             </Grid>
                         </Grid>
                     </div>
-
                 </div>
             </div>
         );

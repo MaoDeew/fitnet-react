@@ -15,10 +15,11 @@
     display: inline-block;
 }
 
-.gridBlockCalories{
-    align-items: center;
-}
 
 @media only screen and (max-width: 600px) {
-    
+    .gridBlockCalories{
+        align-items: center;
+        text-align: center;
+        padding-left: 10%;
+    }    
 }
