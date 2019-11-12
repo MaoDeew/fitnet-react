@@ -13,8 +13,10 @@ import Button from '@material-ui/core/Button';
 
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-
 import * as alertify from 'alertifyjs';
+
+import { connect } from 'react-redux';
+import * as actionCreators from '../store/actions/routinesAction';
 
 class Routines extends Component {
 
@@ -26,6 +28,7 @@ class Routines extends Component {
         routinesCart: [],
         selectedDays: [],
         selectedDay: null,
+        uidUser: this.props.uidUser
     }
 
     componentDidMount() {
@@ -201,8 +204,30 @@ class Routines extends Component {
     }
 
     handleClickSaveRoutines = () =>{
+        var uploadObject = {
+            uidUser: this.state.uidUser,
+            routinesCart: this.state.routinesCart
+        }
+        this.props.uploadSelectedRoutines(uploadObject, ()=>{
+            alertify.success('The Routines were uploaded correctly')
+        })
 
     }
 }
 
-export default Routines;
+const mapDispatchToProps = dispatch => {
+    return {
+        uploadSelectedRoutines: (uploadData, onSuccessCallback) => dispatch(
+            actionCreators.uploadSelectedRoutines(uploadData, onSuccessCallback)
+        )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        uidUser: state.firebaseStore.auth.uid,
+        //routineUpload : state.routineStore.routineUpload
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Routines);
