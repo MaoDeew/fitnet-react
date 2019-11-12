@@ -17,6 +17,7 @@ import Ingredient from './Ingredient'
 import IngredientCart from './IngredientCart';
 
 import { connect } from 'react-redux';
+import * as actionCreators from '../store/actions/nutritionalAction';
 
 import * as alertify from 'alertifyjs';
 
@@ -30,7 +31,8 @@ class Nutritional extends Component {
         previousPage: null,
         ingredientsCart: [],
         uidUser: this.props.uidUser,
-        calorieCount: 0
+        calorieCount: 0,
+        ingredientUpload : this.props.ingredientUpload
     }
 
     componentDidMount() {
@@ -251,11 +253,15 @@ class Nutritional extends Component {
             if (calorieCountElement > 2500) {
                 alertify.error('You exceeded the ideal quantity of kilocalories, please remove some ingredients to upload correctly.')
             } else {
+                
                 var uploadObject = {
                     uidUser: this.state.uidUser,
                     calorieCount: calorieCountElement,
                     ingredientsCart: this.state.ingredientsCart
                 }
+                this.props.uploadSelectedIngredients(uploadObject, ()=>{
+                    alertify.success('Today ingredients uploaded correctly')
+                })
                 console.log(uploadObject)
             }
         }
@@ -265,18 +271,19 @@ class Nutritional extends Component {
 
 }
 
-/*const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
     return {
-        uploadSelectedIngredients: (updateData, onSuccessCallback) => dispatch(
-            actionCreators.uploadSelectedIngredients(updateData, onSuccessCallback)
+        uploadSelectedIngredients: (uploadData, onSuccessCallback) => dispatch(
+            actionCreators.uploadSelectedIngredients(uploadData, onSuccessCallback)
         )
-    }
-}*/
-
-const mapStateToProps = (state) => {
-    return {
-        uidUser: state.firebaseStore.auth.uid
     }
 }
 
-export default connect(mapStateToProps)(Nutritional);
+const mapStateToProps = (state) => {
+    return {
+        uidUser: state.firebaseStore.auth.uid,
+        ingredientUpload : state.nutritionalStore.ingredientUpload
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Nutritional);
