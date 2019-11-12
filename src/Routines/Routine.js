@@ -6,6 +6,9 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Button from '@material-ui/core/Button';
+
+import DatePicker from './DatePicker'
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -24,6 +27,10 @@ var Routine = (props) => {
   const imageRoutine = 'https://cdn.pixabay.com/photo/2017/08/07/14/02/people-2604149_960_720.jpg';
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+  };
+
+  const handleClick = () => {
+    props.handleRoutineSelection(props)
   };
 
   return (
@@ -45,10 +52,16 @@ var Routine = (props) => {
           </Typography>
           <img
             alt={props.key}
-            className={classes.media}
+            className={classesCss.resizeImage}
             src={imageRoutine}
           />
         </ExpansionPanelDetails>
+        <div className={classesCss.button}>
+          <Button onClick={handleClick} variant="contained" color="primary" >
+          Add Routine
+          </Button>
+          <DatePicker id={props.id}/>
+        </div>
         
       </ExpansionPanel>
 

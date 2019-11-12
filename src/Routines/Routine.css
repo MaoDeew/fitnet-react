@@ -1,9 +1,16 @@
 .root{
-    width: 50%;
+    width: 90%;
 }
 
 .resizeImage{
-  display: block;
+  display: inline-block;
+  height : 140px;
+  max-width: 50%;
+}
+
+.button{
+  padding-left: 20%;
+  padding-bottom: 10px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -11,6 +18,14 @@
       width: 100%;
     }
     .resizeImage{
-      display: inline-block;
+      display: block;
+      height : 140px;
+      max-width: 50%;
+    }
+    .button{
+      padding-left: 0;
+    }
+    .button Button{
+      width: 100%;
     }
 }

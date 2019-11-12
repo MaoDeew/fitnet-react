@@ -8,6 +8,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Fab from '@material-ui/core/Fab';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+import Grid from '@material-ui/core/Grid';
+
+import * as alertify from 'alertifyjs';
 
 class Routines extends Component {
 
@@ -15,7 +18,8 @@ class Routines extends Component {
         routines: [],
         loading: false,
         nextPage: null,
-        previousPage: null
+        previousPage: null,
+        routinesCart: []
     }
 
     componentDidMount() {
@@ -58,12 +62,22 @@ class Routines extends Component {
     renderRoutines() {
         return (
             <div>
-                <h1 className={classes.title}>List of Routines</h1>
-               {this.renderPagination()}
-
-                {this.state.routines.map(routine => <Routine key={routine.id} title={routine.name} description={routine.description} />)}
-
-                {this.renderPagination()}
+            <h1 className={classes.title}>List of Routines</h1>
+            {this.renderPagination()}
+            <Grid container>
+                <Grid style={{display : 'inline-block'}} item sm={5}> 
+                {this.state.routines.map(routine => <Routine 
+                key={routine.id}
+                id={routine.id} 
+                title={routine.name} 
+                description={routine.description}
+                handleRoutineSelection={this.handleRoutineSelection} />)}
+                </Grid>
+                <Grid style={{display : 'inline-block'}} item sm={5}>
+                aaaaaaaaaaaaaaaaaaaaaaa
+                </Grid>
+            </Grid>
+            {this.renderPagination()}
             </div>
         );
     }
@@ -107,6 +121,19 @@ class Routines extends Component {
                 });
             })
       }
+
+      handleRoutineSelection = routine => {
+        var dateRoutineSelection = document.getElementById('date'+routine.id).value;
+        
+        var updatedRoutinesCart = [...this.state.routinesCart];
+        console.log(updatedRoutinesCart)
+        updatedRoutinesCart.push({routine, dateRoutineSelection});
+        this.setState({
+            routinesCart: updatedRoutinesCart
+        }, () => {
+            alertify.success('Routine selected')
+        });
+    }
 
 }
 
