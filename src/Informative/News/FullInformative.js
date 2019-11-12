@@ -2,13 +2,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { ThemeProvider } from '@material-ui/styles';
+
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme =>({
   card: {
@@ -40,35 +40,31 @@ const useStyles = makeStyles(theme =>({
   
 }));
 
-var News = (props) => {
+var FullInformative = (props) => {
   const classes = useStyles();
 
   return (
       <div style={{padding: 5 + 'px'}}>
     <Paper className={classes.root} justify="center" alignItems="center" weight="50%">
         <Typography gutterBottom variant="h5" component="h2">
-          NOTICIA
+          {props.title}
         </Typography>
         <Typography gutterBottom variant="overline" display = "block">
-          21 de Novimebre de 2019
+          {props.publishedDate}
         </Typography>
         <Grid item>
-          <ButtonBase className={classes.image}>
-            <img className={classes.img} alt="complex" src="1.jpg"/>
+          <ButtonBase>
+            <img style={{width: 100, height: 100}} alt="complex" src={props.src}/>
           </ButtonBase>
         </Grid>
         <Typography variant="body2" color="textSecondary" component="p" justify="left" alignItems="left">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque neque ac augue maximus, 
-        ac egestas augue pellentesque. Nullam consequat faucibus orci. Donec ut vulputate ipsum. Ut posuere diam ut
-         odio venenatis dapibus. Ut mattis sapien in enim pharetra sagittis. Fusce vel lectus pretium, auctor ligula ut,
-          efficitur neque. Quisque tincidunt metus nec est molestie, eget interdum felis sodales. Quisque porta nunc tortor.
-           Fusce placerat metus vitae tristique vulputate. Donec tempor facilisis ipsum eget semper. Phasellus vitae mollis
-            nulla, ut volutpat tortor. Pellentesque hendrerit nunc finibus pulvinar aliquam. Vivamus ultricies vehicula orci,
-             quis egestas sapien dignissim nec. Aliquam mollis ante eget tortor placerat interdum. Nunc volutpat arcu bibendum viverra volutpat.
+        {props.content}
         </Typography>
         <TextField
             id="standard-basic"
             className={classes.textField}
+            multiline='true'
+            fullWidth='true'
             label="Comentarios"
             margin="normal"
         />
@@ -77,9 +73,6 @@ var News = (props) => {
         <Button size="small" className={classes.button}>
           Compartir
         </Button>
-        <Button size="small" className={classes.button}>
-          Ver más
-        </Button>
       </CardActions>
       </Grid>
     </Paper>
@@ -87,4 +80,4 @@ var News = (props) => {
   );
 }
 
-export default News;
+export default withRouter(FullInformative);

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {NewsBody} from './News1.js';
+import {NewsBody} from './News1.js.js';
 
 class Feed extends Component {
     constructor(props){

@@ -8,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { Route } from 'react-router-dom';
+import FullInformative from './News/FullInformative'
 
 const useStyles = makeStyles({
   card: {
@@ -23,8 +25,17 @@ const useStyles = makeStyles({
   
 });
 
+
+
 var Informative = (props) => {
   const classes = useStyles();
+  const handleClick = () =>{
+    return(
+      <Route path ="/informative/1" exact render = {() => (
+        <FullInformative title={props.title} src={props.src} />
+    )} />
+    )
+  }
 
   return (
       <div style={{padding: 5 + 'px'}}>
@@ -49,7 +60,7 @@ var Informative = (props) => {
         <Button size="small" className={classes.button}>
           Compartir
         </Button>
-        <Button size="small" className={classes.button}>
+        <Button onClick={handleClick} size="small" className={classes.button}>
           Ver más
         </Button>
       </CardActions>

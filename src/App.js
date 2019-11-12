@@ -3,9 +3,9 @@ import Home from './Home/Home';
 import Profile from './Profile/Profile';
 import Routines from './Routines/Routines';
 import Nutritional from './Nutritional/Nutritional'
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar/NavBar';
-import News from './News/News1.js';
+import FullInformative from './Informative/News/FullInformative'
 import './App.css';
 
 import {connect} from 'react-redux'
@@ -18,8 +18,8 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
-          <NavBar />
-          {this.props.isUserLoggedIn ? this.renderRoutes() : <div> <Route path='/' exact component={Home} /> <Redirect to="/" /></div>}
+        <NavBar />
+          {this.props.isUserLoggedIn ? this.renderRoutes() : this.renderOnlyHomeRoute()}
         </BrowserRouter>
       </div>
     );
@@ -28,11 +28,23 @@ class App extends Component {
   renderRoutes(){
     return(
       <div>
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/profile' exact component={Profile} />
+          <Route path='/routines' exact component={Routines} />
+          <Route path='/nutritional' exact component={Nutritional} />
+          <Route path='/news' exact component={FullInformative} />
+        </Switch>
+      </div>
+    )
+  }
+
+  renderOnlyHomeRoute(){
+    return(
+      <div>
+      <Switch>
         <Route path='/' exact component={Home} />
-        <Route path='/profile' exact component={Profile} />
-        <Route path='/routines' exact component={Routines} />
-        <Route path='/nutritional' exact component={Nutritional} />
-        <Route path='/news' exact component={News}/>
+      </Switch>
       </div>
     )
   }
@@ -51,3 +63,4 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps)(App);
+
