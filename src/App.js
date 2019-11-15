@@ -33,7 +33,6 @@ class App extends Component {
           <Route path='/profile' exact component={Profile} />
           <Route path='/routines' exact component={Routines} />
           <Route path='/nutritional' exact component={Nutritional} />
-          <Route path='/news' exact component={FullInformative} />
         </Switch>
       </div>
     )
