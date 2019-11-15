@@ -5,7 +5,6 @@ import Routines from './Routines/Routines';
 import Nutritional from './Nutritional/Nutritional'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar/NavBar';
-import FullInformative from './Informative/News/FullInformative'
 import './App.css';
 
 import {connect} from 'react-redux'
