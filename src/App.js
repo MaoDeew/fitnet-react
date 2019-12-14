@@ -28,10 +28,10 @@ class App extends Component {
     return(
       <div>
         <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/profile' exact component={Profile} />
-          <Route path='/routines' exact component={Routines} />
-          <Route path='/nutritional' exact component={Nutritional} />
+          <Route path={process.env.PUBLIC_URL+'/'} exact component={Home} />
+          <Route path={process.env.PUBLIC_URL+'/profile'} exact component={Profile} />
+          <Route path={process.env.PUBLIC_URL+'/routines'} exact component={Routines} />
+          <Route path={process.env.PUBLIC_URL+'/nutritional'} exact component={Nutritional} />
         </Switch>
       </div>
     )
