@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6d3a546bdb1166128f9999fe80c04985",
+    "revision": "1ce7fda7cfd6831b0eda7ccc9e9e3bda",
     "url": "/fitnet-react/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fitnet-react/static/css/2.3338ade4.chunk.css"
   },
   {
-    "revision": "40333c6d2612a2ea5fb3",
+    "revision": "cc5308d2fff34105f07d",
     "url": "/fitnet-react/static/css/main.bbc3373d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fitnet-react/static/js/2.02a087f1.chunk.js"
   },
   {
-    "revision": "40333c6d2612a2ea5fb3",
-    "url": "/fitnet-react/static/js/main.b3baa0fd.chunk.js"
+    "revision": "cc5308d2fff34105f07d",
+    "url": "/fitnet-react/static/js/main.8699883d.chunk.js"
   },
   {
     "revision": "fc797fd25798842b7c37",
