@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
         <NavBar />
           {this.props.isUserLoggedIn ? this.renderRoutes() : this.renderOnlyHomeRoute()}
         </BrowserRouter>
