@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/fitnet-react/static/css/main.bbc3373d.chunk.css",
-    "main.js": "/fitnet-react/static/js/main.16691ca3.chunk.js",
-    "main.js.map": "/fitnet-react/static/js/main.16691ca3.chunk.js.map",
+    "main.js": "/fitnet-react/static/js/main.b3baa0fd.chunk.js",
+    "main.js.map": "/fitnet-react/static/js/main.b3baa0fd.chunk.js.map",
     "runtime~main.js": "/fitnet-react/static/js/runtime~main.911f9172.js",
     "runtime~main.js.map": "/fitnet-react/static/js/runtime~main.911f9172.js.map",
     "static/css/2.3338ade4.chunk.css": "/fitnet-react/static/css/2.3338ade4.chunk.css",
     "static/js/2.02a087f1.chunk.js": "/fitnet-react/static/js/2.02a087f1.chunk.js",
     "static/js/2.02a087f1.chunk.js.map": "/fitnet-react/static/js/2.02a087f1.chunk.js.map",
     "index.html": "/fitnet-react/index.html",
-    "precache-manifest.51097572b05fa0c65fd02d0fbbe0943a.js": "/fitnet-react/precache-manifest.51097572b05fa0c65fd02d0fbbe0943a.js",
+    "precache-manifest.da4aa727b6086b2e66ea6865019fa1da.js": "/fitnet-react/precache-manifest.da4aa727b6086b2e66ea6865019fa1da.js",
     "service-worker.js": "/fitnet-react/service-worker.js",
     "static/css/2.3338ade4.chunk.css.map": "/fitnet-react/static/css/2.3338ade4.chunk.css.map",
     "static/css/main.bbc3373d.chunk.css.map": "/fitnet-react/static/css/main.bbc3373d.chunk.css.map"

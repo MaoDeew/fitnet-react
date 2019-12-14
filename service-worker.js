@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/fitnet-react/precache-manifest.51097572b05fa0c65fd02d0fbbe0943a.js"
+  "/fitnet-react/precache-manifest.da4aa727b6086b2e66ea6865019fa1da.js"
 );
 
 self.addEventListener('message', (event) => {
