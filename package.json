@@ -54,7 +54,7 @@
     "react-app-polyfill": "^1.0.2",
     "react-circular-progressbar": "^2.0.3",
     "react-day-picker": "^7.4.0",
-    "react-dev-utils": "^9.0.3",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.9.0",
     "react-redux": "^5.1.1",
     "react-redux-firebase": "^2.2.4",
